@@ -1,0 +1,26 @@
+.art-main-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+.art-main-page h1 {
+  font-size: 2.5rem;
+  margin: 0 0 1rem 0;
+  letter-spacing: -0.02em;
+}
+
+.art-main-page p {
+  font-size: 1.1rem;
+  margin: 0 0 2rem 0;
+  max-width: 500px;
+  line-height: 1.6;
+  opacity: 0.95;
+}
