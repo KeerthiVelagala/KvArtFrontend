@@ -24,3 +24,22 @@
   line-height: 1.6;
   opacity: 0.95;
 }
+
+.site-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;    /* matches .nav-inner horizontal padding */
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .art-main-page h1 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .art-main-page h1 {
+    font-size: 1.35rem;
+  }
+}

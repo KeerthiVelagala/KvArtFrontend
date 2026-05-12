@@ -62,7 +62,7 @@ function CartPage() {
                         </div>
                         <div className="summary-row">
                             <span>Shipping:</span>
-                            <span>₹100</span>
+                            <span>₹1</span>
                         </div>
                         <div className="summary-row total">
                             <span>Total:</span>

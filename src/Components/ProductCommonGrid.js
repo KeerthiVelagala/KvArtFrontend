@@ -8,28 +8,32 @@ function ProductCommonGrid({ sunrisersImage, swansImage, treeImage, janganathIma
             image: sunrisersImage,
             name: 'Sunrisers Artwork',
             description: 'Beautiful sunrise painting with vibrant colors',
-            price: 1099
+            price: 1099,
+             soldOut: true
         },
         {
             id: 2,
             image: swansImage,
             name: 'Swans Artwork',
             description: 'Elegant swans with serene water backdrop',
-            price: 1499
+            price: 1099,
+             soldOut: true
         },
         {
             id: 3,
             image: treeImage,
             name: 'Tree of Life',
             description: 'Intricate tree design symbolizing growth and connection',
-            price: 499
+            price: 499,
+             soldOut: false
         },
         {
             id: 4,
             image: janganathImage,
             name: 'Janganath Artwork',
             description: 'Traditional Janganath painting with rich cultural elements',
-            price: 499
+            price: 499,
+                soldOut: false
         }
     ];
 
@@ -46,6 +50,7 @@ function ProductCommonGrid({ sunrisersImage, swansImage, treeImage, janganathIma
                     name={product.name}
                     description={product.description}
                     price={product.price}
+                     soldOut={product.soldOut}
                     // onAddToCart={handleAddToCart}
                 />
             ))}

@@ -1,9 +1,9 @@
-import { useState, useContext } from 'react';
+import { useState ,useContext} from 'react';
 import { CartContext } from '../Context/CartContext';
 import '../styles/ProductCardStyles.css';
 import { useNavigate } from 'react-router-dom'
 
-function ProductCard({ image, name, description, price, onAddToCart }) {
+function ProductCard({ image, name, description, price, onAddToCart,soldOut }) {
     const [showOverlay, setShowOverlay] = useState(false);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
      const [isAdding, setIsAdding] = useState(false); // << add this line
@@ -21,30 +21,40 @@ function ProductCard({ image, name, description, price, onAddToCart }) {
     };
 
     const navigate = useNavigate();
-    const handleAddToCart = async () => {
-        if (isAdding) return; // guard against double invocation
-        setIsAdding(true);
-        try {
-            const product = { image, name, description, price };
-            if (addToCart) {
-                addToCart(product);
-            } else {
-                console.warn('addToCart not available in CartContext');
-            }
-            if (typeof onAddToCart === 'function') {
-                onAddToCart(product);
-            }
-            // redirect to cart page (no alert)
-            navigate('/cart');
-        } finally {
-            // keep disabled until navigation completes; if you don't navigate remove this line
-            setIsAdding(false);
+const handleAddToCart = async () => {
+
+    if (soldOut) return;
+
+    if (isAdding) return;
+
+    setIsAdding(true);
+
+    try {
+        const product = { image, name, description, price };
+
+        if (addToCart) {
+            addToCart(product);
         }
-    };
+
+        if (typeof onAddToCart === 'function') {
+            onAddToCart(product);
+        }
+
+        navigate('/cart');
+
+    } finally {
+        setIsAdding(false);
+    }
+};
 
     return (
         <>
             <div className="product-card">
+                {soldOut && (
+    <div className="sold-out-badge">
+        SOLD OUT
+    </div>
+)}
                 <div className="product-image" onClick={() => setShowOverlay(true)}>
                     <img src={image} alt={name} style={{ cursor: 'pointer' }} />
                 </div>
@@ -53,14 +63,14 @@ function ProductCard({ image, name, description, price, onAddToCart }) {
                     <p className="description">{description}</p>
                     <div className="product-footer">
                         <span className="price">₹{price}</span>
-                        <button 
-                        type='button'
-                            className="add-to-cart-btn"
-                            onClick={handleAddToCart}
-                             disabled={isAdding}
-                        >
-                             {isAdding ? 'Adding...' : 'Add to Cart'}
-                        </button>
+                      <button
+    type='button'
+    className={soldOut ? "sold-btn" : "add-to-cart-btn"}
+    onClick={handleAddToCart}
+    disabled={isAdding || soldOut}
+>
+    {soldOut ? "not available" : isAdding ? 'Adding...' : 'Add to Cart'}
+</button>
                     </div>
                 </div>
             </div>
